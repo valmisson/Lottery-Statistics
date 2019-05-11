@@ -3,3 +3,9 @@
     <router-view/>
   </div>
 </template>
+
+<style>
+  body {
+    font-family: 'Segoe UI', Helvetica, Arial, sans-serif;
+  }
+</style>

@@ -4,7 +4,7 @@ import router from './routes'
 
 // CSS Vendors
 import 'normalize.css'
-import '@/assets/css/flexgrid.css'
+import '@assets/css/flexgrid.css'
 
 Vue.config.productionTip = false
 

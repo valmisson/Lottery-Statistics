@@ -1,28 +1,28 @@
 <template>
   <section class="lotteries row">
     <article class="lotteries__card col-6 col-md-3">
-      <div class="card__content">
+      <div class="card__content card">
         <img class="card__content-clover" src="@assets/images/clover-megasena.svg" alt="">
         <router-link to="#" class="card__content-title mega-sena">Mega-Sena</router-link>
       </div>
     </article>
 
     <article class="lotteries__card col-6 col-md-3">
-      <div class="card__content">
+      <div class="card__content card">
         <img class="card__content-clover" src="@assets/images/clover-lotofacil.svg" alt="">
         <router-link to="#" class="card__content-title lotofacil">Lotofácil</router-link>
       </div>
     </article>
 
     <article class="lotteries__card col-6 col-md-3">
-      <div class="card__content">
+      <div class="card__content card">
         <img class="card__content-clover" src="@assets/images/clover-quina.svg" alt="">
         <router-link to="#" class="card__content-title quina">Quina</router-link>
       </div>
     </article>
 
     <article class="lotteries__card col-6 col-md-3">
-      <div class="card__content">
+      <div class="card__content card">
         <img class="card__content-clover" src="@assets/images/clover-lotomania.svg" alt="">
         <router-link to="#" class="card__content-title lotomania">Lotomania</router-link>
       </div>
@@ -46,9 +46,6 @@ export default {
   }
 
   .card__content {
-    background-color: var(--color-white);
-    box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
-    border-radius: 5px;
     padding-bottom: 15px;
     text-align: center;
   }

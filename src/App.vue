@@ -23,6 +23,7 @@ export default {
     --color-font: #737373;
     --color-white: white;
     --color-title: #4d4d4d;
+    --card-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
   }
 
   body {
@@ -55,6 +56,12 @@ export default {
 
   .lotomania {
     color: #f78100;
+  }
+
+  .card {
+    background-color: var(--color-white);
+    box-shadow: var(--card-shadow);
+    border-radius: 5px;
   }
 
   @media (max-width: 768px) {

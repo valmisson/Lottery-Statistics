@@ -64,7 +64,7 @@ export default {
     border-radius: 5px;
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     .main {
       position: relative;
       top: 50px;

@@ -1,7 +1,7 @@
 <template>
   <header class="layout__header">
     <div class="container">
-      <div class="layout__header-row row">
+      <div class="layout__header-row">
         <a href="/estatistica/" class="layout__header-brand">Lotterias</a>
 
         <button @click="toggleMenu" class="menu__button">
@@ -52,6 +52,7 @@ export default {
   }
 
   .layout__header-row {
+    display: flex;
     align-items: center;
     justify-content: space-between;
     height: 50px;
@@ -125,6 +126,13 @@ export default {
   .menu__link.router-link-active {
     color: var(--color-primary);
     position: relative;
+  }
+
+  @media (max-width: 767px) {
+    .layout__header .container {
+      padding-left: 0;
+      padding-right: 0;
+    }
   }
 
   @media (min-width: 768px) {

@@ -4,7 +4,7 @@
       <div class="layout__header-row">
         <a href="/estatistica/" class="layout__header-brand">Lotterias</a>
 
-        <button @click="toggleMenu" class="menu__button">
+        <button @click="toggleMenu" ref="buttonMenu" class="menu__button">
           <span class="menu__button-cicle"></span>
           <span class="menu__button-cicle"></span>
           <span class="menu__button-cicle"></span>
@@ -29,11 +29,21 @@
 export default {
   name: 'Header',
 
-  methods: {
-    toggleMenu () {
+  watch: {
+    '$route' () {
       const { menu } = this.$refs
 
+      if (menu.classList.contains('isShow')) this.toggleMenu()
+    }
+  },
+
+  methods: {
+    toggleMenu () {
+      const { menu, buttonMenu } = this.$refs
+
       menu.classList.toggle('isShow')
+
+      buttonMenu.classList.toggle('isOpen')
     }
   }
 }
@@ -90,6 +100,10 @@ export default {
 
   .menu__button-cicle:last-child {
     margin-right: 0;
+  }
+
+  .isOpen .menu__button-cicle {
+    background-color: var(--color-primary);
   }
 
   /* menu */

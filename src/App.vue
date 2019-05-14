@@ -2,7 +2,7 @@
   <div id="app">
     <layout-header />
 
-    <router-view class="main"/>
+    <router-view class="main container"/>
   </div>
 </template>
 
@@ -40,9 +40,27 @@ export default {
     list-style: none;
   }
 
+  /* lotteies */
+  .mega-sena {
+    color: #1cd442;
+  }
+
+  .lotofacil {
+    color: #cc1bb9;
+  }
+
+  .quina {
+    color: #1c76d4;
+  }
+
+  .lotomania {
+    color: #f78100;
+  }
+
   @media (max-width: 768px) {
     .main {
-      margin-top: 50px;
+      position: relative;
+      top: 50px;
     }
   }
 </style>

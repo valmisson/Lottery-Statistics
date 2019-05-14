@@ -2,7 +2,7 @@
   <header class="layout__header">
     <div class="container">
       <div class="layout__header-row row">
-        <a href="/" class="layout__header-brand">Lotterias</a>
+        <a href="/estatistica/" class="layout__header-brand">Lotterias</a>
 
         <button @click="toggleMenu" class="menu__button">
           <span class="menu__button-cicle"></span>
@@ -12,8 +12,12 @@
 
         <nav ref="menu" class="layout__header-menu">
           <ul class="menu__content">
-            <li class="menu__item"><router-link to="/" class="menu__link">Estatisticas</router-link></li>
-            <li class="menu__item"><router-link to="#" class="menu__link">Resultados</router-link></li>
+            <li class="menu__item">
+              <router-link to="/estatistica/" class="menu__link">Estatisticas</router-link>
+            </li>
+            <li class="menu__item">
+              <router-link to="/resultado/" class="menu__link">Resultados</router-link>
+            </li>
           </ul>
         </nav>
       </div>
@@ -118,7 +122,7 @@ export default {
     font-weight: 500;
   }
 
-  .menu__link.router-link-exact-active {
+  .menu__link.router-link-active {
     color: var(--color-primary);
     position: relative;
   }
@@ -166,7 +170,7 @@ export default {
       padding-right: 0;
     }
 
-    .menu__link.router-link-exact-active::after {
+    .menu__link.router-link-active::after {
       background-color: var(--color-primary);
       content: '';
       cursor: default;

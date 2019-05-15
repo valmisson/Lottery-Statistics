@@ -16,7 +16,7 @@
               <router-link to="/estatistica/" class="menu__link">Estatisticas</router-link>
             </li>
             <li class="menu__item">
-              <router-link to="/resultado/" class="menu__link">Resultados</router-link>
+              <router-link to="/resultados/" class="menu__link">Resultados</router-link>
             </li>
           </ul>
         </nav>

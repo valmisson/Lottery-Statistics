@@ -45,7 +45,7 @@ export default {
     margin: 0;
   }
 
-  /* lotteies */
+  /* lotteries */
   .mega-sena {
     color: #1cd442;
   }

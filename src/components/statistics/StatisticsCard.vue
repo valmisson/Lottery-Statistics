@@ -19,21 +19,16 @@
 <script>
 export default {
   name: 'StatistcsCard',
+
   props: {
     title: {
       type: String,
       required: true
     },
 
-    lottery: {
+    lotteryClass: {
       type: String,
       required: true
-    }
-  },
-
-  computed: {
-    lotteryClass () {
-      return this.lottery === 'Lotofácil' ? 'lotofacil' : this.lottery.toLowerCase()
     }
   },
 

@@ -1,6 +1,7 @@
 import Home from '@views/Home.vue'
 
 const Statistics = () => import(/* webpackChunkName: "statistics" */ '@views/Statistics.vue')
+const Results = () => import(/* webpackChunkName: "statistics" */ '@views/Results.vue')
 
 export default [
   {
@@ -31,5 +32,25 @@ export default [
     path: '/estatisticas/lotomania',
     name: 'Lotomania',
     component: Statistics
+  },
+  {
+    path: '/resultados/megasena',
+    name: 'Mega-Sena',
+    component: Results
+  },
+  {
+    path: '/resultados/lotofacil',
+    name: 'Lotofácil',
+    component: Results
+  },
+  {
+    path: '/resultados/quina',
+    name: 'Quina',
+    component: Results
+  },
+  {
+    path: '/resultados/lotomania',
+    name: 'Lotomania',
+    component: Results
   }
 ]

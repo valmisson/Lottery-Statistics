@@ -31,7 +31,7 @@ export default {
 
   @media (min-width: 768px) {
     .hero {
-      margin-top: 45px;
+      margin-top: 50px;
     }
 
     .hero__title {

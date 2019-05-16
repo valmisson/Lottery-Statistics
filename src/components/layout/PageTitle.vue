@@ -50,13 +50,14 @@ export default {
 
   .page__title-lottery {
     font-size: 20px;
+    margin-bottom: 0;
   }
 
   .page__title-page {
     font-size: 16px;
     font-weight: 500;
     margin-left: 20px;
-    margin-bottom: 11px;
+    margin-bottom: -3px;
   }
 
   @media (min-width: 768px) {
@@ -66,12 +67,14 @@ export default {
 
     .page__title-lottery {
       font-size: 26px;
+      margin-bottom: 10px;
     }
 
     .page__title-page {
       font-size: 18px;
       font-weight: 500;
       margin-left: 35px;
+      margin-bottom: 3px;
     }
   }
 </style>

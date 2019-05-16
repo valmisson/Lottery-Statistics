@@ -152,7 +152,6 @@ export default {
   @media (min-width: 768px) {
     .layout__header {
       padding: 0;
-      position: relative;
     }
 
     .layout__header-row {

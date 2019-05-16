@@ -3,28 +3,28 @@
     <article class="lotteries__card col-6 col-md-3">
       <div class="card__content card">
         <img class="card__content-clover" src="@assets/images/clover-megasena.svg" alt="">
-        <router-link to="/estatistica/megasena" class="card__content-title mega-sena">Mega-Sena</router-link>
+        <router-link to="/estatisticas/megasena" class="card__content-title mega-sena">Mega-Sena</router-link>
       </div>
     </article>
 
     <article class="lotteries__card col-6 col-md-3">
       <div class="card__content card">
         <img class="card__content-clover" src="@assets/images/clover-lotofacil.svg" alt="">
-        <router-link to="/estatistica/lotofacil" class="card__content-title lotofacil">Lotofácil</router-link>
+        <router-link to="/estatisticas/lotofacil" class="card__content-title lotofacil">Lotofácil</router-link>
       </div>
     </article>
 
     <article class="lotteries__card col-6 col-md-3">
       <div class="card__content card">
         <img class="card__content-clover" src="@assets/images/clover-quina.svg" alt="">
-        <router-link to="/estatistica/quina" class="card__content-title quina">Quina</router-link>
+        <router-link to="/estatisticas/quina" class="card__content-title quina">Quina</router-link>
       </div>
     </article>
 
     <article class="lotteries__card col-6 col-md-3">
       <div class="card__content card">
         <img class="card__content-clover" src="@assets/images/clover-lotomania.svg" alt="">
-        <router-link to="/estatistica/lotomania" class="card__content-title lotomania">Lotomania</router-link>
+        <router-link to="/estatisticas/lotomania" class="card__content-title lotomania">Lotomania</router-link>
       </div>
     </article>
   </section>

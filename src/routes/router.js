@@ -5,30 +5,30 @@ const Statistics = () => import(/* webpackChunkName: "statistics" */ '@views/Sta
 export default [
   {
     path: '/',
-    redirect: '/estatistica/'
+    redirect: '/estatisticas/'
   },
   {
-    path: '/estatistica/',
+    path: '/estatisticas/',
     name: 'Home',
     component: Home
   },
   {
-    path: '/estatistica/megasena',
+    path: '/estatisticas/megasena',
     name: 'Mega-Sena',
     component: Statistics
   },
   {
-    path: '/estatistica/lotofacil',
+    path: '/estatisticas/lotofacil',
     name: 'Lotofácil',
     component: Statistics
   },
   {
-    path: '/estatistica/quina',
+    path: '/estatisticas/quina',
     name: 'Quina',
     component: Statistics
   },
   {
-    path: '/estatistica/lotomania',
+    path: '/estatisticas/lotomania',
     name: 'Lotomania',
     component: Statistics
   }

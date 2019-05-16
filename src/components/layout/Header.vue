@@ -2,7 +2,7 @@
   <header class="layout__header">
     <div class="container">
       <div class="layout__header-row">
-        <a href="/estatistica/" class="layout__header-brand">Lotterias</a>
+        <a href="/estatisticas/" class="layout__header-brand">Lotterias</a>
 
         <button @click="toggleMenu" ref="buttonMenu" class="menu__button">
           <span class="menu__button-cicle"></span>
@@ -13,7 +13,7 @@
         <nav ref="menu" class="layout__header-menu">
           <ul class="menu__content">
             <li class="menu__item">
-              <router-link to="/estatistica/" class="menu__link">Estatisticas</router-link>
+              <router-link to="/estatisticas/" class="menu__link">Estatisticas</router-link>
             </li>
             <li class="menu__item">
               <router-link to="/resultados/" class="menu__link">Resultados</router-link>

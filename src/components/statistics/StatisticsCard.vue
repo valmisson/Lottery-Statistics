@@ -7,7 +7,7 @@
           <p class="list__aside-text">{{ listAsideText('Dezenas') }}</p>
           <p class="list__aside-text">{{ listAsideText('Vezes') }}</p>
         </div>
-        <div v-for="i in 20" :key="i" class="list__number">
+        <div v-for="i in data" :key="i" class="list__number">
           <p :class="['list__number-dezena', lotteryClass]">00</p>
           <p class="list__number-vez">245</p>
         </div>
@@ -29,6 +29,11 @@ export default {
     lotteryClass: {
       type: String,
       required: true
+    },
+
+    data: {
+      type: Number,
+      required: true
     }
   },
 
@@ -47,6 +52,10 @@ export default {
     margin-top: 25px;
     padding-left: 15px;
     padding-right: 15px;
+  }
+
+  .statistcs__card:last-child {
+    margin-bottom: 45px;
   }
 
   .statistcs__card-title {
@@ -112,7 +121,7 @@ export default {
     }
 
     .statistcs__card-list {
-      overflow-x: scroll;
+      overflow-x: auto;
     }
 
     .list__number:last-child {
@@ -146,6 +155,13 @@ export default {
 
     .list__number-vez {
       font-size: 15px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .statistcs__card:last-child {
+      margin-bottom: 60px;
+      padding-right: 0;
     }
   }
 </style>

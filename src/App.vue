@@ -37,6 +37,11 @@ export default {
     text-decoration: none;
   }
 
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
   li {
     list-style: none;
   }

@@ -13,6 +13,9 @@
         <nav ref="menu" class="layout__header-menu">
           <ul class="menu__content">
             <li class="menu__item">
+              <router-link to="/" class="menu__link home" exact>Home</router-link>
+            </li>
+            <li class="menu__item">
               <router-link to="/estatisticas/" class="menu__link">Estatisticas</router-link>
             </li>
             <li class="menu__item">
@@ -128,8 +131,12 @@ export default {
     padding-left: 0;
   }
 
-  .menu__item:last-child {
+  .menu__item {
     margin-top: 20px;
+  }
+
+  .menu__item:first-child {
+    margin-top: 0;
   }
 
   .menu__link {
@@ -183,6 +190,7 @@ export default {
     }
 
     .menu__item {
+      margin-top: 0;
       padding-right: 50px;
     }
 
@@ -191,7 +199,7 @@ export default {
       padding-right: 0;
     }
 
-    .menu__link.router-link-active::after {
+    .menu__link.home.router-link-active::after {
       background-color: var(--color-primary);
       content: '';
       cursor: default;

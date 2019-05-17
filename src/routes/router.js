@@ -6,10 +6,6 @@ const Results = () => import(/* webpackChunkName: "statistics" */ '@views/Result
 export default [
   {
     path: '/',
-    redirect: '/estatisticas/'
-  },
-  {
-    path: '/estatisticas/',
     name: 'Home',
     component: Home
   },

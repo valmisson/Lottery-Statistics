@@ -2,29 +2,53 @@
   <section class="lotteries row">
     <article class="lotteries__card col-6 col-md-3">
       <div class="card__content card">
-        <img class="card__content-clover" src="@assets/images/clover-megasena.svg" alt="">
-        <router-link to="/estatisticas/megasena" class="card__content-title mega-sena">Mega-Sena</router-link>
+        <img class="card__content-clover" src="@assets/images/clover-megasena.svg" alt="clover megasena">
+
+        <h3 class="card__content-title mega-sena">Mega-Sena</h3>
+
+        <nav class="card__content-link">
+          <router-link to="/estatisticas/megasena" class="content__link-item">Estatisticas</router-link>
+          <router-link to="/resultados/megasena" class="content__link-item">Resultados</router-link>
+        </nav>
       </div>
     </article>
 
     <article class="lotteries__card col-6 col-md-3">
       <div class="card__content card">
-        <img class="card__content-clover" src="@assets/images/clover-lotofacil.svg" alt="">
-        <router-link to="/estatisticas/lotofacil" class="card__content-title lotofacil">Lotofácil</router-link>
+        <img class="card__content-clover" src="@assets/images/clover-lotofacil.svg" alt="clover lotofacil">
+
+        <h3 class="card__content-title lotofacil">Lotofácil</h3>
+
+        <nav class="card__content-link">
+          <router-link to="/estatisticas/lotofacil" class="content__link-item">Estatisticas</router-link>
+          <router-link to="/resultados/lotofacil" class="content__link-item">Resultados</router-link>
+        </nav>
       </div>
     </article>
 
     <article class="lotteries__card col-6 col-md-3">
       <div class="card__content card">
-        <img class="card__content-clover" src="@assets/images/clover-quina.svg" alt="">
-        <router-link to="/estatisticas/quina" class="card__content-title quina">Quina</router-link>
+        <img class="card__content-clover" src="@assets/images/clover-quina.svg" alt="clover quina">
+
+        <h3 class="card__content-title quina">Quina</h3>
+
+        <nav class="card__content-link">
+          <router-link to="/estatisticas/quina" class="content__link-item">Estatisticas</router-link>
+          <router-link to="/resultados/quina" class="content__link-item">Resultados</router-link>
+        </nav>
       </div>
     </article>
 
     <article class="lotteries__card col-6 col-md-3">
       <div class="card__content card">
-        <img class="card__content-clover" src="@assets/images/clover-lotomania.svg" alt="">
-        <router-link to="/estatisticas/lotomania" class="card__content-title lotomania">Lotomania</router-link>
+        <img class="card__content-clover" src="@assets/images/clover-lotomania.svg" alt="clover lotomania">
+
+        <h3 class="card__content-title lotomania">Lotomania</h3>
+
+        <nav class="card__content-link">
+          <router-link to="/estatisticas/lotomania" class="content__link-item">Estatisticas</router-link>
+          <router-link to="/resultados/lotomania" class="content__link-item">Resultados</router-link>
+        </nav>
       </div>
     </article>
   </section>
@@ -59,7 +83,23 @@ export default {
     display: table;
     font-size: 18px;
     font-weight: 500;
-    margin: 25px auto 0 auto;
+    margin: 20px auto 0 auto;
+  }
+
+  .card__content-link {
+    display: flex;
+    flex-direction: column;
+    margin-top: 15px;
+  }
+
+  .content__link-item {
+    color: var(--color-font);
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .content__link-item:last-child {
+    margin-top: 15px;
   }
 
   @media (min-width: 768px) {
@@ -72,7 +112,7 @@ export default {
     }
 
     .card__content {
-      padding-bottom: 25px;
+      padding-bottom: 20px;
     }
 
     .card__content-clover {
@@ -82,6 +122,31 @@ export default {
 
     .card__content-title {
       font-size: 20px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    .card__content {
+      padding-left: 25px;
+      padding-right: 25px;
+    }
+
+    .card__content-link {
+      flex-direction: row;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    .content__link-item {
+      font-size: 16px;
+    }
+
+    .content__link-item:hover {
+      color: var(--color-title);
+    }
+
+    .content__link-item:last-child {
+      margin-top: 0;
     }
   }
 </style>

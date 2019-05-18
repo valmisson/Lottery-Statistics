@@ -2,7 +2,7 @@
   <header class="layout__header">
     <div class="container">
       <div class="layout__header-row">
-        <a href="/estatisticas/" class="layout__header-brand">Lotterias</a>
+        <a href="/" class="layout__header-brand">Lotterias</a>
 
         <button @click="toggleMenu" ref="buttonMenu" class="menu__button">
           <span class="menu__button-cicle"></span>
@@ -15,14 +15,27 @@
             <li class="menu__item">
               <router-link to="/" class="menu__link home" exact>Home</router-link>
             </li>
-            <li class="menu__item">
-              <router-link to="/estatisticas/" class="menu__link">Estatisticas</router-link>
+            <li :class="['menu__item menu__link', {'router-link-active': activeRouterLink('/estatisticas/')}]">
+              Estatisticas
+              <div class="menu__dropdown">
+                <router-link to="/estatisticas/megasena" class="menu__dropdown-item">Mega-Sena</router-link>
+                <router-link to="/estatisticas/lotofacil" class="menu__dropdown-item">Lotofácil</router-link>
+                <router-link to="/estatisticas/quina" class="menu__dropdown-item">Quina</router-link>
+                <router-link to="/estatisticas/lotomania" class="menu__dropdown-item">Lotomania</router-link>
+              </div>
             </li>
-            <li class="menu__item">
-              <router-link to="/resultados/" class="menu__link">Resultados</router-link>
+            <li :class="['menu__item menu__link', {'router-link-active': activeRouterLink('/resultados/')}]">
+              Resultados
+              <div class="menu__dropdown">
+                <router-link to="/resultados/megasena" class="menu__dropdown-item">Mega-Sena</router-link>
+                <router-link to="/resultados/lotofacil" class="menu__dropdown-item">Lotofácil</router-link>
+                <router-link to="/resultados/quina" class="menu__dropdown-item">Quina</router-link>
+                <router-link to="/resultados/lotomania" class="menu__dropdown-item">Lotomania</router-link>
+              </div>
             </li>
           </ul>
         </nav>
+        <div @click="toggleMenu" ref="overlayMenu" class="overlay"></div>
       </div>
     </div>
   </header>
@@ -42,11 +55,21 @@ export default {
 
   methods: {
     toggleMenu () {
-      const { menu, buttonMenu } = this.$refs
+      const { menu, buttonMenu, overlayMenu } = this.$refs
 
       menu.classList.toggle('isShow')
 
       buttonMenu.classList.toggle('isOpen')
+
+      overlayMenu.classList.toggle('overlayIsShow')
+    },
+
+    activeRouterLink (uri) {
+      const paths = Array.isArray(uri) ? uri : [uri]
+
+      return paths.some(path => {
+        return this.$route.path.indexOf(path) === 0
+      })
     }
   }
 }
@@ -111,7 +134,7 @@ export default {
 
   /* menu */
   .isShow {
-    transform: translateX(-15%) !important;
+    transform: translateX(0%) !important;
     transition: transform 0.3s ease;
   }
 
@@ -119,10 +142,10 @@ export default {
     background-color: var(--color-white);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
     position: fixed;
-    padding: 15px 35px;
+    padding: 15px 40px 15px 30px;
     right: 0;
     top: 50px;
-    transform: translateX(110%);
+    transform: translateX(100%);
     transition: transform 0.3s ease;
   }
 
@@ -132,7 +155,9 @@ export default {
   }
 
   .menu__item {
-    margin-top: 20px;
+    color: var(--color-title);
+    margin-top: 25px;
+    position: relative;
   }
 
   .menu__item:first-child {
@@ -140,13 +165,30 @@ export default {
   }
 
   .menu__link {
-    color: var(--color-font);
+    cursor: pointer;
     font-weight: 500;
   }
 
-  .menu__link.router-link-active {
-    color: var(--color-primary);
+  .menu__link.home {
+    color: var(--color-title);
+  }
+
+  .router-link-active {
+    color: var(--color-primary) !important;
     position: relative;
+  }
+
+  /* menu dropdown */
+  .menu__dropdown {
+    margin-top: 15px;
+  }
+
+  .menu__dropdown-item {
+    color: var(--color-font);
+    display: table;
+    font-size: 14px;
+    margin-top: 15px;
+    white-space: nowrap;
   }
 
   @media (max-width: 767px) {
@@ -154,9 +196,37 @@ export default {
       padding-left: 0;
       padding-right: 0;
     }
+
+    .layout__header-menu {
+      height: calc(100vh - 50px);
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.3);
+      display: block;
+      height: calc(100vh - 50px);
+      position: fixed;
+      left: 0;
+      top: 50px;
+      width: 100%;
+      opacity: 0;
+      transition: all linear 0.3s;
+      visibility: hidden;
+      z-index: -1;
+    }
+
+    .overlayIsShow {
+      opacity: 1;
+      transition: all linear 0.3s;
+      visibility: visible;
+    }
   }
 
   @media (min-width: 768px) {
+    .overlay {
+      display: none;
+    }
+
     .layout__header {
       padding: 0;
     }
@@ -191,7 +261,7 @@ export default {
 
     .menu__item {
       margin-top: 0;
-      padding-right: 50px;
+      padding: 25px 50px 25px 0;
     }
 
     .menu__item:last-child {
@@ -208,6 +278,31 @@ export default {
       position: absolute;
       top: 36px;
       width: 100%;
+    }
+
+    /* menu dropdown */
+    .menu__dropdown {
+      background-color: var(--color-white);
+      box-shadow: 0 3px 4px rgba(0, 0, 0, 0.15);
+      cursor: default;
+      margin-top: 0;
+      opacity: 0;
+      padding: 15px 25px;
+      position: absolute;
+      left: -25px;
+      transition: all linear 0.3s;
+      visibility: hidden;
+    }
+
+    .menu__dropdown-item {
+      font-size: 15px;
+    }
+
+    .menu__item.menu__link:hover > .menu__dropdown,
+    .menu__item.menu__link:focus > .menu__dropdown {
+      opacity: 1;
+      transition: all linear 0.3s;
+      visibility: visible;
     }
   }
 </style>

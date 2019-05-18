@@ -1,6 +1,6 @@
 <template>
   <section class="page__title">
-    <h1 ref="lottery" class="page__title-lottery">{{ lottery }}</h1>
+    <h1 :class="['page__title-lottery', lotteryClass]">{{ lottery }}</h1>
     <h2 class="page__title-page">{{ page }}</h2>
   </section>
 </template>
@@ -9,33 +9,18 @@
 export default {
   name: 'PageTitle',
 
-  data () {
-    return {
-      lottery: ''
-    }
-  },
-
   props: {
+    lottery: {
+      type: String,
+      required: true
+    },
     page: {
       type: String,
       required: true
-    }
-  },
-
-  mounted () {
-    const { name } = this.$route
-
-    this.lottery = name
-
-    this.defineClass(name)
-  },
-
-  methods: {
-    defineClass (lotteryName) {
-      const { lottery } = this.$refs
-      const className = lotteryName === 'Lotofácil' ? 'lotofacil' : lotteryName.toLowerCase()
-
-      lottery.classList.add(className)
+    },
+    lotteryClass: {
+      type: String,
+      required: true
     }
   }
 }

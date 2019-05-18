@@ -1,8 +1,8 @@
 <template>
   <main class="results">
-    <page-title page="Resultados" />
+    <page-title :lottery="lotteryName" page="Resultados" :lotteryClass="lotteryClass" />
     <section class="row">
-      <results-card v-for="i in 20" :key="i" :data="20" :lotteryClass="lottery" />
+      <results-card v-for="i in 20" :key="i" :data="20" :lotteryClass="lotteryClass" />
     </section>
   </main>
 </template>
@@ -20,10 +20,14 @@ export default {
   },
 
   computed: {
-    lottery () {
+    lotteryName () {
       const { name } = this.$route
 
-      return name === 'Lotofácil' ? 'lotofacil' : name.toLowerCase()
+      return name
+    },
+
+    lotteryClass () {
+      return this.lotteryName === 'Lotofácil' ? 'lotofacil' : this.lotteryName.toLowerCase()
     }
   }
 }

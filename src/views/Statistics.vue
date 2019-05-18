@@ -1,11 +1,11 @@
 <template>
   <main class="statistics">
-    <page-title page="Estatisticas" />
+    <page-title :lottery="lotteryName" page="Estatisticas" :lotteryClass="lotteryClass" />
     <div class="row">
-      <statistics-card title="Frequência das Dezenas" :data="20" :lotteryClass="lottery" />
-      <link-result :lotteryClass="lottery" />
-      <statistics-card title="Dezenas Pares" :data="10" :lotteryClass="lottery" />
-      <statistics-card title="Dezenas Ímpares" :data="10" :lotteryClass="lottery" />
+      <statistics-card title="Frequência das Dezenas" :data="20" :lotteryClass="lotteryClass" />
+      <link-result :lotteryClass="lotteryClass" />
+      <statistics-card title="Dezenas Pares" :data="10" :lotteryClass="lotteryClass" />
+      <statistics-card title="Dezenas Ímpares" :data="10" :lotteryClass="lotteryClass" />
     </div>
   </main>
 </template>
@@ -24,10 +24,14 @@ export default {
   },
 
   computed: {
-    lottery () {
+    lotteryName () {
       const { name } = this.$route
 
-      return name === 'Lotofácil' ? 'lotofacil' : name.toLowerCase()
+      return name
+    },
+
+    lotteryClass () {
+      return this.lotteryName === 'Lotofácil' ? 'lotofacil' : this.lotteryName.toLowerCase()
     }
   }
 }

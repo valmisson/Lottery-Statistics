@@ -7,7 +7,8 @@
         "@/*": ["src/*"],
         "@assets/*": ["src/assets/*"],
         "@views/*": ["src/views/*"],
-        "@components/*": ["src/components/*"]
+        "@components/*": ["src/components/*"],
+        "@database": ["src/service/firebaseDB.js"]
       }
     },
     "exclude": ["node_modules", "dist"]

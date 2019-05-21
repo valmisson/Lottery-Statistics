@@ -1,8 +1,8 @@
 <template>
   <main class="results">
-    <page-title :lottery="lotteryName" page="Resultados" :lotteryClass="lotteryClass" />
+    <page-title :lottery="lottery" page="Resultados" :lotteryClass="lotteryFormatted" />
     <section class="row">
-      <results-card v-for="i in 20" :key="i" :data="20" :lotteryClass="lotteryClass" />
+      <results-card v-for="result in results" :key="result.concurso.numero" :data="result" :lotteryClass="lotteryFormatted" />
     </section>
   </main>
 </template>
@@ -10,24 +10,55 @@
 <script>
 import PageTitle from '@components/layout/PageTitle.vue'
 import ResultsCard from '@components/results/ResultsCard.vue'
+import database from '@database'
 
 export default {
   name: 'Results',
+
+  data () {
+    return {
+      results: []
+    }
+  },
 
   components: {
     PageTitle,
     ResultsCard
   },
 
+  created () {
+    this.getResults()
+  },
+
+  watch: {
+    '$route' () {
+      this.getResults()
+    }
+  },
+
   computed: {
-    lotteryName () {
+    lottery () {
       const { name } = this.$route
 
       return name
     },
 
-    lotteryClass () {
-      return this.lotteryName === 'Lotofácil' ? 'lotofacil' : this.lotteryName.toLowerCase()
+    lotteryFormatted () {
+      return this.lottery === 'Lotofácil' ? 'lotofacil' : this.lottery.toLowerCase()
+    }
+  },
+
+  methods: {
+    async getResults () {
+      const lottery = this.lotteryFormatted.replace('-', '')
+
+      const databaseRef = await database.ref(`resultado__${lottery}`).limitToLast(20)
+      const results = await databaseRef.once('value')
+
+      const resultsList = Object.values(results.val())
+      resultsList.reverse()
+
+      this.results = resultsList
     }
   }
 }

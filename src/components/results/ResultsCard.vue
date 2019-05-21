@@ -3,13 +3,15 @@
     <div class="result__card card">
       <header class="card__header">
         <h3 class="card__header-contest">CONCURSO
-          <b class="header__contest-number">2151</b>
-          <span class="header__contest-date">(15/05/19)</span>
+          <b class="header__contest-number">{{ data.concurso.numero }}</b>
+          <span class="header__contest-date">({{ data.concurso.data }})</span>
         </h3>
-        <p :class="['header__contest-accumulated', lotteryClass ]">Acumulou!</p>
+        <p v-if="acumulou" :class="['header__contest-accumulated', lotteryClass ]">Acumulou!</p>
       </header>
       <ul class="card__dozens">
-        <li v-for="i in data" :key="i" :class="['card__dozens-item', lotteryClass ]">28</li>
+        <li v-for="dezena in data.dezenas" :key="dezena" :class="['card__dozens-item', lotteryClass ]">
+          {{ dezena }}
+        </li>
       </ul>
       <div class="card__awards">
         <h3 :class="['card__awards-title', lotteryClass ]">Prêmiação</h3>
@@ -23,20 +25,14 @@
           </thead>
 
           <tbody>
-            <tr>
-              <td class="awards__table-hits">Sena</td>
-              <td class="awards__table-winners">0</td>
-              <td class="awards__table-prize">-</td>
-            </tr>
-            <tr>
-              <td class="awards__table-hits">Quina</td>
-              <td class="awards__table-winners">80</td>
-              <td class="awards__table-prize">R$ 23.556,59</td>
-            </tr>
-            <tr>
-              <td class="awards__table-hits">Quadra</td>
-              <td class="awards__table-winners">5.236</td>
-              <td class="awards__table-prize">R$ 514,16</td>
+            <tr v-for="premio in data.premiacao" :key="premio.nome">
+              <td class="awards__table-hits">{{ premio.nome }}</td>
+              <td class="awards__table-winners">
+                {{ parseInt(premio.ganhadores).toLocaleString() }}
+              </td>
+              <td class="awards__table-prize">
+                {{ premio.valor === '0,00' ? '-' : 'R$ ' + premio.valor }}
+              </td>
             </tr>
           </tbody>
         </table>
@@ -51,13 +47,21 @@ export default {
 
   props: {
     data: {
-      type: Number,
+      type: Object,
       required: true
     },
 
     lotteryClass: {
       type: String,
       required: true
+    }
+  },
+
+  computed: {
+    acumulou () {
+      if (this.data.premiacao[0].ganhadores === '0') return true
+
+      return false
     }
   }
 }

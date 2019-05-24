@@ -2,14 +2,14 @@
   <section class="statistcs__card">
     <h3 class="statistcs__card-title">{{ title }}</h3>
     <article class="statistcs__card-list card">
-      <div v-for="i in 3" :key="i" class="list">
+      <div v-for="(list, i) in dozensList" :key="i" :class="['list', lotteryClass]">
         <div class="list__aside">
           <p class="list__aside-text">{{ listAsideText('Dezenas') }}</p>
           <p class="list__aside-text">{{ listAsideText('Vezes') }}</p>
         </div>
-        <div v-for="i in data" :key="i" class="list__number">
-          <p :class="['list__number-dezena', lotteryClass]">00</p>
-          <p class="list__number-vez">245</p>
+        <div v-for="dozens in list" :key="dozens.dezena" class="list__number">
+          <p class="list__number-dezena">{{ dozens.dezena }}</p>
+          <p class="list__number-vez">{{ dozens.vezes }}</p>
         </div>
       </div>
     </article>
@@ -31,8 +31,8 @@ export default {
       required: true
     },
 
-    data: {
-      type: Number,
+    dozensList: {
+      type: Object,
       required: true
     }
   },
@@ -87,6 +87,7 @@ export default {
   }
 
   .list__aside-text {
+    color: var(--color-font);
     font-size: 14px;
     font-weight: 500;
   }
@@ -110,6 +111,7 @@ export default {
   }
 
   .list__number-vez {
+    color: var(--color-font);
     font-weight: 600;
     font-size: 14px;
     margin-top: 3px;
@@ -162,6 +164,10 @@ export default {
     .statistcs__card:last-child {
       margin-bottom: 60px;
       padding-right: 0;
+    }
+
+    .lotofacil .list__number {
+      margin-right: 10px;
     }
   }
 </style>

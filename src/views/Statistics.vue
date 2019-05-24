@@ -5,11 +5,11 @@
     <p v-show="error" class="error card">{{ error }}</p>
 
     <div class="row">
-      <statistics-card title="Frequência das Dezenas" :data="20" :lotteryClass="lotteryFormatted" />
+      <statistics-card title="Frequência das Dezenas" :dozensList="frequencyAllDozens | listSlicedDozens(20)" :lotteryClass="lotteryFormatted" />
       <link-result :lotteryClass="lotteryFormatted" />
 
-      <statistics-card title="Dezenas Pares" :data="10" :lotteryClass="lotteryFormatted" />
-      <statistics-card title="Dezenas Ímpares" :data="10" :lotteryClass="lotteryFormatted" />
+      <statistics-card title="Dezenas Pares" :dozensList="frequencyAllDozensPair | listSlicedDozens(10)" :lotteryClass="lotteryFormatted" />
+      <statistics-card title="Dezenas Ímpares" :dozensList="frequencyAllDozensOdd | listSlicedDozens(10)" :lotteryClass="lotteryFormatted" />
     </div>
   </main>
 </template>
@@ -55,6 +55,29 @@ export default {
 
     lotteryFormatted () {
       return this.lottery === 'Lotofácil' ? 'lotofacil' : this.lottery.toLowerCase()
+    },
+
+    frequencyAllDozensPair () {
+      return this.dozensTypes('par')
+    },
+
+    frequencyAllDozensOdd () {
+      return this.dozensTypes('impar')
+    }
+  },
+
+  filters: {
+    listSlicedDozens (listDozens, size) {
+      const windowWidth = window.innerWidth
+      const listSize = windowWidth < 767 ? 10 : windowWidth <= 1024 ? 20 : size // set list size to 15 for phone and 20 for tablet
+      const list = listDozens
+      let newList = []
+
+      for (let i = 0; i < list.length; i += listSize) {
+        newList.push(list.slice(i, i + listSize))
+      }
+
+      return { ...newList }
     }
   },
 
@@ -74,6 +97,18 @@ export default {
       } catch (error) {
         this.error = `Erro ao obter frequência de todas as dezenas da ${this.lottery}`
       }
+    },
+
+    dozensTypes (type) {
+      const allDozens = this.frequencyAllDozens
+
+      const allDozensType = allDozens.filter(dozen => {
+        const { dezena } = dozen
+
+        return type === 'par' ? dezena % 2 === 0 : type === 'impar' ? dezena % 2 !== 0 : null
+      })
+
+      return allDozensType
     }
   }
 }

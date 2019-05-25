@@ -4,7 +4,9 @@
 
     <p v-show="error" class="error card">{{ error }}</p>
 
-    <div class="row">
+    <loading v-show="isLoading" :lotteryClass="lotteryFormatted"/>
+
+    <div v-show="!isLoading" class="row">
       <statistics-card title="Frequência das Dezenas" :dozensList="frequencyAllDozens | listSlicedDozens(20)" :lotteryClass="lotteryFormatted" />
       <link-result :lotteryClass="lotteryFormatted" />
 
@@ -16,6 +18,7 @@
 
 <script>
 import PageTitle from '@components/layout/PageTitle.vue'
+import Loading from '@components/layout/Loading.vue'
 import StatisticsCard from '@components/statistics/StatisticsCard.vue'
 import LinkResult from '@components/statistics/LinkResult.vue'
 import database from '@database'
@@ -26,12 +29,14 @@ export default {
   data () {
     return {
       frequencyAllDozens: [],
-      error: ''
+      error: '',
+      isLoading: false
     }
   },
 
   components: {
     PageTitle,
+    Loading,
     StatisticsCard,
     LinkResult
   },
@@ -84,6 +89,8 @@ export default {
   methods: {
     async getFrequencyAllDozens () {
       try {
+        this.isLoading = true
+
         const lottery = this.lotteryFormatted.replace('-', '') // remove - the name of the mega-sena lottery
 
         const databaseRef = await database.ref(`frequencia_dezenas__${lottery}`)
@@ -94,7 +101,11 @@ export default {
         const dozensOrderedTimes = databaseResultArray.sort((a, b) => b.vezes - a.vezes)
 
         this.frequencyAllDozens = dozensOrderedTimes
+
+        this.isLoading = false
       } catch (error) {
+        this.isLoading = false
+
         this.error = `Erro ao obter frequência de todas as dezenas da ${this.lottery}`
       }
     },

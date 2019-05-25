@@ -2,7 +2,9 @@
   <div id="app">
     <layout-header />
 
-    <router-view class="main container"/>
+    <transition name="fade">
+      <router-view class="main container"/>
+    </transition>
   </div>
 </template>
 
@@ -76,5 +78,15 @@ export default {
   .main {
     position: relative;
     top: 50px;
+  }
+
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity 0.4s;
+  }
+
+  .fade-enter,
+  .fade-leave-to {
+    opacity: 0;
   }
 </style>

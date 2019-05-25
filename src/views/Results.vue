@@ -2,6 +2,8 @@
   <main class="results">
     <page-title :lottery="lottery" page="Resultados" :lotteryClass="lotteryFormatted" />
 
+    <p v-show="error" class="error card">{{ error }}</p>
+
     <loading v-show="isLoading" :lotteryClass="lotteryFormatted"/>
 
     <section v-show="!isLoading" class="row">
@@ -22,6 +24,7 @@ export default {
   data () {
     return {
       results: [],
+      error: '',
       isLoading: false
     }
   },
@@ -32,8 +35,12 @@ export default {
     ResultsCard
   },
 
-  created () {
+  beforeMount () {
     this.getResults()
+  },
+
+  mounted () {
+    this.ResultsInfiniteScroll()
   },
 
   watch: {
@@ -56,19 +63,68 @@ export default {
 
   methods: {
     async getResults () {
-      this.isLoading = true
+      try {
+        this.isLoading = true
 
-      const lottery = this.lotteryFormatted.replace('-', '')
+        const lottery = this.lotteryFormatted.replace('-', '')
 
-      const databaseRef = await database.ref(`resultado__${lottery}`).limitToLast(20)
-      const results = await databaseRef.once('value')
+        const databaseRef = await database.ref(`resultado__${lottery}`).limitToLast(20)
+        const results = await databaseRef.once('value')
 
-      const resultsList = Object.values(results.val())
-      resultsList.reverse()
+        const resultsList = Object.values(results.val())
+        resultsList.reverse()
 
-      this.results = resultsList
+        this.results = resultsList
 
-      this.isLoading = false
+        this.isLoading = false
+      } catch (error) {
+        this.isLoading = false
+
+        this.error = `Erro ao obter resultados da ${this.lottery}`
+      }
+    },
+
+    ResultsInfiniteScroll () {
+      try {
+        window.onscroll = this.debounce(async () => {
+          const bottomOfWindow = document.documentElement.scrollTop + window.innerHeight >= document.documentElement.offsetHeight - 800
+
+          if (bottomOfWindow) {
+            const lastResult = this.results.slice(-1)[0]
+            const lastResultNumber = lastResult.concurso.numero
+            const startResult = lastResultNumber - 20
+            const endResult = lastResultNumber - 1
+
+            const lottery = this.lotteryFormatted.replace('-', '')
+
+            const databaseRef = await database.ref(`resultado__${lottery}`)
+              .orderByKey()
+              .startAt(startResult.toString())
+              .endAt(endResult.toString())
+              .limitToLast(20)
+
+            const results = await databaseRef.once('value')
+
+            const resultsList = Object.values(results.val())
+            resultsList.reverse()
+
+            this.results.push(...resultsList)
+          }
+        }, 300)
+      } catch (error) {
+        this.error = `Erro ao obter resultados da ${this.lottery}`
+      }
+    },
+
+    debounce (fn, time) {
+      let timeout
+
+      return function () {
+        const functionCall = () => fn.apply(this, arguments)
+
+        clearTimeout(timeout)
+        timeout = setTimeout(functionCall, time)
+      }
     }
   }
 }

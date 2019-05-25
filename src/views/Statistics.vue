@@ -41,7 +41,7 @@ export default {
     LinkResult
   },
 
-  mounted () {
+  beforeMount () {
     this.getFrequencyAllDozens()
   },
 
@@ -128,11 +128,5 @@ export default {
 <style scoped>
   .statistics .row {
     justify-content: space-between;
-  }
-
-  .error {
-    color: red;
-    margin-top: 25px;
-    padding: 15px 20px;
   }
 </style>

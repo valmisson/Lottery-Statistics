@@ -80,13 +80,21 @@ export default {
     top: 50px;
   }
 
+  /* efect transition */
   .fade-enter-active,
   .fade-leave-active {
-    transition: opacity 0.4s;
+    transition: opacity 0.17s;
   }
 
   .fade-enter,
   .fade-leave-to {
     opacity: 0;
+  }
+
+  /* Message error */
+  .error {
+    color: red;
+    margin-top: 25px;
+    padding: 15px 20px;
   }
 </style>

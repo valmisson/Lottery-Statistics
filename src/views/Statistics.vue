@@ -6,7 +6,7 @@
 
     <loading v-show="isLoading" :lotteryClass="lotteryFormatted"/>
 
-    <div v-show="!isLoading" class="row">
+    <div v-show="!isLoading" v-if="!error.length" class="row">
       <statistics-card title="Frequência das Dezenas" :dozensList="frequencyAllDozens | listSlicedDozens(20)" :lotteryClass="lotteryFormatted" />
       <link-result :lotteryClass="lotteryFormatted" />
 

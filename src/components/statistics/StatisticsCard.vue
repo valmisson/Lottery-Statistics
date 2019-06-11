@@ -167,7 +167,11 @@ export default {
     }
 
     .lotofacil .list__number {
-      margin-right: 10px;
+      margin-right: 6px;
+    }
+
+    .lotofacil .list__number:nth-child(21) {
+      margin-right: 0;
     }
   }
 </style>

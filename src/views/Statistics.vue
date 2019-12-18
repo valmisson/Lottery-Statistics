@@ -1,17 +1,17 @@
 <template>
   <main class="statistics">
-    <page-title :lottery="lottery" page="Estatisticas" :lotteryClass="lotteryFormatted" />
+    <page-title page="Estatisticas" :lottery="lottery" />
 
     <p v-show="error" class="error card">{{ error }}</p>
 
-    <loading v-show="isLoading" :lotteryClass="lotteryFormatted"/>
+    <loading v-show="isLoading" :lotteryClass="lottery"/>
 
     <div v-show="!isLoading" v-if="!error.length" class="row">
-      <statistics-card title="Frequência das Dezenas" :dozensList="frequencyAllDozens | listSlicedDozens(20)" :lotteryClass="lotteryFormatted" />
-      <link-result :lotteryClass="lotteryFormatted" />
+      <statistics-card title="Frequência das Dezenas" :dozensList="frequencyAllDozens | listSlicedDozens(20)" :lotteryClass="lottery" />
+      <link-result :lotteryClass="lottery" />
 
-      <statistics-card title="Dezenas Pares" :dozensList="frequencyAllDozensPair | listSlicedDozens(10)" :lotteryClass="lotteryFormatted" />
-      <statistics-card title="Dezenas Ímpares" :dozensList="frequencyAllDozensOdd | listSlicedDozens(10)" :lotteryClass="lotteryFormatted" />
+      <statistics-card title="Dezenas Pares" :dozensList="frequencyAllDozensPair | listSlicedDozens(10)" :lotteryClass="lottery" />
+      <statistics-card title="Dezenas Ímpares" :dozensList="frequencyAllDozensOdd | listSlicedDozens(10)" :lotteryClass="lottery" />
     </div>
   </main>
 </template>
@@ -53,13 +53,7 @@ export default {
 
   computed: {
     lottery () {
-      const { name } = this.$route
-
-      return name
-    },
-
-    lotteryFormatted () {
-      return this.lottery === 'Lotofácil' ? 'lotofacil' : this.lottery.toLowerCase()
+      return this.$route.params.lottery
     },
 
     frequencyAllDozensPair () {
@@ -91,9 +85,7 @@ export default {
       try {
         this.isLoading = true
 
-        const lottery = this.lotteryFormatted.replace('-', '') // remove - the name of the mega-sena lottery
-
-        const databaseRef = await database.ref(`frequencia_dezenas__${lottery}`)
+        const databaseRef = await database.ref(`frequencia_dezenas__${this.lottery}`)
         const databaseResult = await databaseRef.once('value')
 
         const databaseResultArray = Object.values(databaseResult.val())

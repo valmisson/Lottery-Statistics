@@ -15,26 +15,31 @@
             <li class="menu__item">
               <router-link to="/" class="menu__link home" exact>Home</router-link>
             </li>
+
             <li :class="['menu__item menu__link', {'router-link-active': activeRouterLink('/estatisticas/')}]">
               Estatisticas
+
               <div class="menu__dropdown">
-                <router-link to="/estatisticas/megasena" class="menu__dropdown-item">Mega-Sena</router-link>
-                <router-link to="/estatisticas/lotofacil" class="menu__dropdown-item">Lotofácil</router-link>
-                <router-link to="/estatisticas/quina" class="menu__dropdown-item">Quina</router-link>
-                <router-link to="/estatisticas/lotomania" class="menu__dropdown-item">Lotomania</router-link>
+                <router-link :to="{ name: 'Estatisticas', params: { lottery: 'megasena' }}" class="menu__dropdown-item">Mega-Sena</router-link>
+                <router-link :to="{ name: 'Estatisticas', params: { lottery: 'lotofacil' }}" class="menu__dropdown-item">Lotofácil</router-link>
+                <router-link :to="{ name: 'Estatisticas', params: { lottery: 'quina' }}" class="menu__dropdown-item">Quina</router-link>
+                <router-link :to="{ name: 'Estatisticas', params: { lottery: 'lotomania' }}" class="menu__dropdown-item">Lotomania</router-link>
               </div>
             </li>
+
             <li :class="['menu__item menu__link', {'router-link-active': activeRouterLink('/resultados/')}]">
               Resultados
+
               <div class="menu__dropdown">
-                <router-link to="/resultados/megasena" class="menu__dropdown-item">Mega-Sena</router-link>
-                <router-link to="/resultados/lotofacil" class="menu__dropdown-item">Lotofácil</router-link>
-                <router-link to="/resultados/quina" class="menu__dropdown-item">Quina</router-link>
-                <router-link to="/resultados/lotomania" class="menu__dropdown-item">Lotomania</router-link>
+                <router-link :to="{ name: 'Resultados', params: { lottery: 'megasena'}}" class="menu__dropdown-item">Mega-Sena</router-link>
+                <router-link :to="{ name: 'Resultados', params: { lottery: 'lotofacil'}}" class="menu__dropdown-item">Lotofácil</router-link>
+                <router-link :to="{ name: 'Resultados', params: { lottery: 'quina'}}" class="menu__dropdown-item">Quina</router-link>
+                <router-link :to="{ name: 'Resultados', params: { lottery: 'lotomania'}}" class="menu__dropdown-item">Lotomania</router-link>
               </div>
             </li>
           </ul>
         </nav>
+
         <div @click="toggleMenu" ref="overlayMenu" class="overlay"></div>
       </div>
     </div>

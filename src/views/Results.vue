@@ -1,13 +1,13 @@
 <template>
   <main class="results">
-    <page-title :lottery="lottery" page="Resultados" :lotteryClass="lotteryFormatted" />
+    <page-title page="Resultados" :lottery="lottery" />
 
     <p v-show="error" class="error card">{{ error }}</p>
 
-    <loading v-show="isLoading" :lotteryClass="lotteryFormatted"/>
+    <loading v-show="isLoading" :lotteryClass="lottery"/>
 
     <section v-show="!isLoading" class="row">
-      <results-card v-for="result in results" :key="result.concurso.numero" :data="result" :lotteryClass="lotteryFormatted" />
+      <results-card v-for="result in results" :key="result.concurso.numero" :data="result" :lotteryClass="lottery" />
     </section>
   </main>
 </template>
@@ -51,13 +51,7 @@ export default {
 
   computed: {
     lottery () {
-      const { name } = this.$route
-
-      return name
-    },
-
-    lotteryFormatted () {
-      return this.lottery === 'Lotofácil' ? 'lotofacil' : this.lottery.toLowerCase()
+      return this.$route.params.lottery
     }
   },
 
@@ -66,9 +60,7 @@ export default {
       try {
         this.isLoading = true
 
-        const lottery = this.lotteryFormatted.replace('-', '')
-
-        const databaseRef = await database.ref(`resultado__${lottery}`).limitToLast(20)
+        const databaseRef = await database.ref(`resultado__${this.lottery}`).limitToLast(20)
         const results = await databaseRef.once('value')
 
         const resultsList = Object.values(results.val())
@@ -95,15 +87,15 @@ export default {
             const startResult = lastResultNumber - 20
             const endResult = lastResultNumber - 1
 
-            const lottery = this.lotteryFormatted.replace('-', '')
-
-            const databaseRef = await database.ref(`resultado__${lottery}`)
+            const databaseRef = await database.ref(`resultado__${this.lottery}`)
               .orderByKey()
               .startAt(startResult.toString())
               .endAt(endResult.toString())
               .limitToLast(20)
 
             const results = await databaseRef.once('value')
+
+            if (!results.val()) return
 
             const resultsList = Object.values(results.val())
             resultsList.reverse()

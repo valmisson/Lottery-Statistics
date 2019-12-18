@@ -53,7 +53,7 @@ export default {
   }
 
   /* lotteries */
-  .mega-sena {
+  .megasena {
     color: #1cd442;
   }
 

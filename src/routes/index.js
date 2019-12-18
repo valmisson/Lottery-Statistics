@@ -11,15 +11,18 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  const { title } = to.meta
+  const { name } = to
+  const { lottery } = to.params
+  const lotteryName = lottery === 'megasena' ? 'Mega-Sena'
+    : lottery === 'lotofacil' ? 'Lotofácil' : lottery === 'quina' ? 'Quina' : 'Lotomania'
 
-  if (!title) {
+  if (!lottery) {
     document.title = 'Lottery Statistics'
 
     return next()
   }
 
-  document.title = title + ' | Lottery Statistics'
+  document.title = `${lotteryName} - ${name} | Lottery Statistics`
 
   next()
 })

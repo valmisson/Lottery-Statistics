@@ -45,7 +45,7 @@ export default {
   }
 
   /* lotteries */
-  .link__result.mega-sena {
+  .link__result.megasena {
     background-color: #1cd442;
   }
 

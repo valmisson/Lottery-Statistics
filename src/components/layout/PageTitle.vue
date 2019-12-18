@@ -1,6 +1,6 @@
 <template>
   <section class="page__title">
-    <h1 :class="['page__title-lottery', lotteryClass]">{{ lottery }}</h1>
+    <h1 :class="['page__title-lottery', lottery]">{{ title }}</h1>
     <h2 class="page__title-page">{{ page }}</h2>
   </section>
 </template>
@@ -17,10 +17,12 @@ export default {
     page: {
       type: String,
       required: true
-    },
-    lotteryClass: {
-      type: String,
-      required: true
+    }
+  },
+  computed: {
+    title () {
+      return this.lottery === 'megasena' ? 'Mega-Sena'
+        : this.lottery === 'lotofacil' ? 'Lotofácil' : this.lottery === 'quina' ? 'Quina' : 'Lotomania'
     }
   }
 }

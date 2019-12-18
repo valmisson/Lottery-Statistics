@@ -4,11 +4,11 @@
       <div class="card__content card">
         <img class="card__content-clover" src="@assets/images/clover-megasena.svg" alt="clover megasena">
 
-        <h3 class="card__content-title mega-sena">Mega-Sena</h3>
+        <h3 class="card__content-title megasena">Mega-Sena</h3>
 
         <nav class="card__content-link">
-          <router-link to="/estatisticas/megasena" class="content__link-item">Estatisticas</router-link>
-          <router-link to="/resultados/megasena" class="content__link-item">Resultados</router-link>
+          <router-link :to="{ name: 'Estatisticas', params: { lottery: 'megasena' }}" class="content__link-item">Estatisticas</router-link>
+          <router-link :to="{ name: 'Resultados', params: { lottery: 'megasena'}}" class="content__link-item">Resultados</router-link>
         </nav>
       </div>
     </article>
@@ -20,8 +20,8 @@
         <h3 class="card__content-title lotofacil">Lotofácil</h3>
 
         <nav class="card__content-link">
-          <router-link to="/estatisticas/lotofacil" class="content__link-item">Estatisticas</router-link>
-          <router-link to="/resultados/lotofacil" class="content__link-item">Resultados</router-link>
+          <router-link :to="{ name: 'Estatisticas', params: { lottery: 'lotofacil' }}" class="content__link-item">Estatisticas</router-link>
+          <router-link :to="{ name: 'Resultados', params: { lottery: 'lotofacil'}}" class="content__link-item">Resultados</router-link>
         </nav>
       </div>
     </article>
@@ -33,8 +33,8 @@
         <h3 class="card__content-title quina">Quina</h3>
 
         <nav class="card__content-link">
-          <router-link to="/estatisticas/quina" class="content__link-item">Estatisticas</router-link>
-          <router-link to="/resultados/quina" class="content__link-item">Resultados</router-link>
+          <router-link :to="{ name: 'Estatisticas', params: { lottery: 'quina' }}" class="content__link-item">Estatisticas</router-link>
+          <router-link :to="{ name: 'Resultados', params: { lottery: 'quina'}}" class="content__link-item">Resultados</router-link>
         </nav>
       </div>
     </article>
@@ -46,8 +46,8 @@
         <h3 class="card__content-title lotomania">Lotomania</h3>
 
         <nav class="card__content-link">
-          <router-link to="/estatisticas/lotomania" class="content__link-item">Estatisticas</router-link>
-          <router-link to="/resultados/lotomania" class="content__link-item">Resultados</router-link>
+          <router-link :to="{ name: 'Estatisticas', params: { lottery: 'lotomania' }}" class="content__link-item">Estatisticas</router-link>
+          <router-link :to="{ name: 'Resultados', params: { lottery: 'lotomania'}}" class="content__link-item">Resultados</router-link>
         </nav>
       </div>
     </article>

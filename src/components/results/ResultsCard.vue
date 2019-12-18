@@ -2,35 +2,35 @@
   <article class="result col-md-6">
     <div class="result__card card">
       <header class="card__header">
-        <h3 class="card__header-contest">CONCURSO
-          <b class="header__contest-number">{{ data.concurso.numero }}</b>
-          <span class="header__contest-date">({{ data.concurso.data }})</span>
+        <h3 class="card__contest">CONCURSO
+          <b class="contest__number">{{ data.concurso.numero }}</b>
+          <span class="contest__date">({{ data.concurso.data }})</span>
         </h3>
-        <p v-if="acumulou" :class="['header__contest-accumulated', lotteryClass ]">Acumulou!</p>
+        <p v-if="acumulou" :class="['contest__accumulated', lotteryClass ]">Acumulou!</p>
       </header>
       <ul class="card__dozens">
-        <li v-for="dezena in data.dezenas" :key="dezena" :class="['card__dozens-item', lotteryClass ]">
+        <li v-for="dezena in data.dezenas" :key="dezena" :class="['dozens__item', lotteryClass ]">
           {{ dezena }}
         </li>
       </ul>
       <div class="card__awards">
-        <h3 :class="['card__awards-title', lotteryClass ]">Prêmiação</h3>
+        <h3 :class="['awards__title', lotteryClass ]">Prêmiação</h3>
         <table class="awards__table">
           <thead>
             <tr>
-              <th class="awards__table-title">ACERTOS</th>
-              <th class="awards__table-title">GANHADORES</th>
-              <th class="awards__table-title">PRÊMIO</th>
+              <th class="table__title">ACERTOS</th>
+              <th class="table__title">GANHADORES</th>
+              <th class="table__title">PRÊMIO</th>
             </tr>
           </thead>
 
           <tbody>
             <tr v-for="premio in data.premiacao" :key="premio.nome">
-              <td class="awards__table-hits">{{ premio.nome }}</td>
-              <td class="awards__table-winners">
+              <td class="table__hits">{{ premio.nome }}</td>
+              <td class="table__winners">
                 {{ parseInt(premio.ganhadores).toLocaleString() }}
               </td>
-              <td class="awards__table-prize">
+              <td class="table__prize">
                 {{ premio.valor === '0,00' ? '-' : 'R$ ' + premio.valor }}
               </td>
             </tr>
@@ -86,22 +86,22 @@ export default {
     justify-content: space-between;
   }
 
-  .card__header-contest {
+  .card__contest {
     font-size: 12px;
     font-weight: 500;
     margin: 0;
   }
 
-  .header__contest-date {
+  .contest__date {
     margin-left: 10px;
   }
 
-  .header__contest-number,
-  .header__contest-date {
+  .contest__number,
+  .contest__date {
     font-size: 16px;
   }
 
-  .header__contest-accumulated {
+  .contest__accumulated {
     font-size: 18px;
     font-weight: 600;
     margin-top: -2px;
@@ -115,7 +115,7 @@ export default {
     margin-top: 15px;
   }
 
-  .card__dozens-item {
+  .dozens__item {
     font-size: 20px;
     font-weight: 600;
     margin-right: 10px;
@@ -127,7 +127,7 @@ export default {
     margin-top: 20px;
   }
 
-  .card__awards-title {
+  .awards__title {
     font-size: 16px;
     font-weight: 600;
     margin: 0;
@@ -137,40 +137,40 @@ export default {
     margin-top: 15px;
   }
 
-  .awards__table-title {
+  .table__title {
     font-size: 12px;
     padding-right: 15px;
     padding-bottom: 5px;
   }
 
-  .awards__table-title:last-child {
+  .table__title:last-child {
     padding-right: 60px;
   }
 
-  .awards__table-hits {
+  .table__hits {
     color: var(--color-title);
     font-weight: 700;
   }
 
-  .awards__table-winners,
-  .awards__table-prize {
+  .table__winners,
+  .table__prize {
     font-weight: 600;
   }
 
-  .awards__table-hits,
-  .awards__table-winners,
-  .awards__table-prize {
+  .table__hits,
+  .table__winners,
+  .table__prize {
     font-size: 14px;
   }
 
   @media (min-width: 374px) {
-    .awards__table-title {
+    .table__title {
       padding-right: 30px;
     }
   }
 
   @media (min-width: 599px) and (max-width: 767px) {
-    .awards__table-title {
+    .table__title {
       padding-right: 50px;
     }
   }
@@ -181,34 +181,34 @@ export default {
     }
 
     /* dozens */
-    .card__dozens-item {
+    .dozens__item {
       font-size: 26px;
       margin-right: 15px;
       line-height: 30px;
     }
 
     /* header */
-    .card__header-contest {
+    .card__contest {
       font-size: 14px;
     }
 
-    .header__contest-accumulated {
+    .contest__accumulated {
       font-size: 20px;
       margin-top: -4px;
     }
 
     /* awards */
-    .card__awards-title {
+    .awards__title {
       font-size: 18px;
     }
 
-    .awards__table-title {
+    .table__title {
       padding-right: 50px;
     }
 
-    .awards__table-hits,
-    .awards__table-winners,
-    .awards__table-prize {
+    .table__hits,
+    .table__winners,
+    .table__prize {
       font-size: 16px;
     }
   }

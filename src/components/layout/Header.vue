@@ -1,16 +1,16 @@
 <template>
   <header class="layout__header">
     <div class="container">
-      <div class="layout__header-row">
-        <a href="/" class="layout__header-brand">Lotterias</a>
+      <div class="header__row">
+        <a href="/" class="header__brand">Lotterias</a>
 
         <button @click="toggleMenu" ref="buttonMenu" class="menu__button">
-          <span class="menu__button-cicle"></span>
-          <span class="menu__button-cicle"></span>
-          <span class="menu__button-cicle"></span>
+          <span class="button__cicle"></span>
+          <span class="button__cicle"></span>
+          <span class="button__cicle"></span>
         </button>
 
-        <nav ref="menu" class="layout__header-menu">
+        <nav ref="menu" class="header__menu">
           <ul class="menu__content">
             <li class="menu__item">
               <router-link to="/" class="menu__link home" exact>Home</router-link>
@@ -20,10 +20,10 @@
               Estatisticas
 
               <div class="menu__dropdown">
-                <router-link :to="{ name: 'Estatisticas', params: { lottery: 'megasena' }}" class="menu__dropdown-item">Mega-Sena</router-link>
-                <router-link :to="{ name: 'Estatisticas', params: { lottery: 'lotofacil' }}" class="menu__dropdown-item">Lotofácil</router-link>
-                <router-link :to="{ name: 'Estatisticas', params: { lottery: 'quina' }}" class="menu__dropdown-item">Quina</router-link>
-                <router-link :to="{ name: 'Estatisticas', params: { lottery: 'lotomania' }}" class="menu__dropdown-item">Lotomania</router-link>
+                <router-link :to="{ name: 'Estatisticas', params: { lottery: 'megasena' }}" class="dropdown__item">Mega-Sena</router-link>
+                <router-link :to="{ name: 'Estatisticas', params: { lottery: 'lotofacil' }}" class="dropdown__item">Lotofácil</router-link>
+                <router-link :to="{ name: 'Estatisticas', params: { lottery: 'quina' }}" class="dropdown__item">Quina</router-link>
+                <router-link :to="{ name: 'Estatisticas', params: { lottery: 'lotomania' }}" class="dropdown__item">Lotomania</router-link>
               </div>
             </li>
 
@@ -31,10 +31,10 @@
               Resultados
 
               <div class="menu__dropdown">
-                <router-link :to="{ name: 'Resultados', params: { lottery: 'megasena'}}" class="menu__dropdown-item">Mega-Sena</router-link>
-                <router-link :to="{ name: 'Resultados', params: { lottery: 'lotofacil'}}" class="menu__dropdown-item">Lotofácil</router-link>
-                <router-link :to="{ name: 'Resultados', params: { lottery: 'quina'}}" class="menu__dropdown-item">Quina</router-link>
-                <router-link :to="{ name: 'Resultados', params: { lottery: 'lotomania'}}" class="menu__dropdown-item">Lotomania</router-link>
+                <router-link :to="{ name: 'Resultados', params: { lottery: 'megasena'}}" class="dropdown__item">Mega-Sena</router-link>
+                <router-link :to="{ name: 'Resultados', params: { lottery: 'lotofacil'}}" class="dropdown__item">Lotofácil</router-link>
+                <router-link :to="{ name: 'Resultados', params: { lottery: 'quina'}}" class="dropdown__item">Quina</router-link>
+                <router-link :to="{ name: 'Resultados', params: { lottery: 'lotomania'}}" class="dropdown__item">Lotomania</router-link>
               </div>
             </li>
           </ul>
@@ -69,6 +69,7 @@ export default {
       overlayMenu.classList.toggle('overlayIsShow')
     },
 
+    // check current uri
     activeRouterLink (uri) {
       const paths = Array.isArray(uri) ? uri : [uri]
 
@@ -92,7 +93,7 @@ export default {
     z-index: 999;
   }
 
-  .layout__header-row {
+  .header__row {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -101,7 +102,7 @@ export default {
   }
 
   /* brand */
-  .layout__header-brand {
+  .header__brand {
     color: var(--color-primary);
     font-size: 18px;
     font-weight: 600;
@@ -120,7 +121,7 @@ export default {
     outline: none;
   }
 
-  .menu__button-cicle {
+  .button__cicle {
     background-color: var(--color-title);
     border-radius: 50%;
     display: block;
@@ -129,11 +130,11 @@ export default {
     width: 6px;
   }
 
-  .menu__button-cicle:last-child {
+  .button__cicle:last-child {
     margin-right: 0;
   }
 
-  .isOpen .menu__button-cicle {
+  .isOpen .button__cicle {
     background-color: var(--color-primary);
   }
 
@@ -143,7 +144,7 @@ export default {
     transition: transform 0.3s ease;
   }
 
-  .layout__header-menu {
+  .header__menu {
     background-color: var(--color-white);
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
     position: fixed;
@@ -188,7 +189,7 @@ export default {
     margin-top: 15px;
   }
 
-  .menu__dropdown-item {
+  .dropdown__item {
     color: var(--color-font);
     display: table;
     font-size: 14px;
@@ -202,7 +203,7 @@ export default {
       padding-right: 0;
     }
 
-    .layout__header-menu {
+    .header__menu {
       height: calc(100vh - 50px);
     }
 
@@ -236,12 +237,12 @@ export default {
       padding: 0;
     }
 
-    .layout__header-row {
+    .header__row {
       height: 55px;
     }
 
     /* brand */
-    .layout__header-brand {
+    .header__brand {
       font-size: 20px;
     }
 
@@ -251,7 +252,7 @@ export default {
     }
 
     /* Menu */
-    .layout__header-menu {
+    .header__menu {
       background-color: transparent;
       box-shadow: none;
       position: relative;
@@ -299,7 +300,7 @@ export default {
       visibility: hidden;
     }
 
-    .menu__dropdown-item {
+    .dropdown__item {
       font-size: 15px;
     }
 

@@ -1,7 +1,7 @@
 <template>
   <section class="page__title">
-    <h1 :class="['page__title-lottery', lottery]">{{ title }}</h1>
-    <h2 class="page__title-page">{{ page }}</h2>
+    <h1 :class="['title__lottery', lottery]">{{ title }}</h1>
+    <h2 class="title__page">{{ page }}</h2>
   </section>
 </template>
 
@@ -35,12 +35,12 @@ export default {
     margin-top: 25px;
   }
 
-  .page__title-lottery {
+  .title__lottery {
     font-size: 20px;
     margin-bottom: 0;
   }
 
-  .page__title-page {
+  .title__page {
     font-size: 16px;
     font-weight: 500;
     margin-left: 20px;
@@ -52,12 +52,12 @@ export default {
       margin-top: 35px;
     }
 
-    .page__title-lottery {
+    .title__lottery {
       font-size: 26px;
       margin-bottom: 10px;
     }
 
-    .page__title-page {
+    .title__page {
       font-size: 18px;
       font-weight: 500;
       margin-left: 35px;

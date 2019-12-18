@@ -1,6 +1,6 @@
 <template>
   <div :class="['link__result col', lotteryClass]">
-    <router-link :to="uri" class="link__result-link">RESULTADOS</router-link>
+    <router-link :to="uri" class="link">RESULTADOS</router-link>
   </div>
 </template>
 
@@ -37,7 +37,7 @@ export default {
     text-align: center;
   }
 
-  .link__result-link {
+  .link {
     color: var(--color-white);
     font-size: 16px;
     font-weight: 600;

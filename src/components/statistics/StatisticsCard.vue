@@ -1,15 +1,17 @@
 <template>
   <section class="statistcs__card">
-    <h3 class="statistcs__card-title">{{ title }}</h3>
-    <article class="statistcs__card-list card">
+    <h3 class="card__title">{{ title }}</h3>
+
+    <article class="card__list card">
       <div v-for="(list, i) in dozensList" :key="i" :class="['list', lotteryClass]">
         <div class="list__aside">
-          <p class="list__aside-text">{{ listAsideText('Dezenas') }}</p>
-          <p class="list__aside-text">{{ listAsideText('Vezes') }}</p>
+          <p class="aside__text">{{ listAsideText('Dezenas') }}</p>
+          <p class="aside__text">{{ listAsideText('Vezes') }}</p>
         </div>
+
         <div v-for="dozens in list" :key="dozens.dezena" class="list__number">
-          <p class="list__number-dezena">{{ dozens.dezena }}</p>
-          <p class="list__number-vez">{{ dozens.vezes }}</p>
+          <p class="number__dozens">{{ dozens.dezena }}</p>
+          <p class="number__times">{{ dozens.vezes }}</p>
         </div>
       </div>
     </article>
@@ -58,12 +60,12 @@ export default {
     margin-bottom: 45px;
   }
 
-  .statistcs__card-title {
+  .card__title {
     color: var(--color-title);
     font-size: 16px;
   }
 
-  .statistcs__card-list {
+  .card__list {
     padding: 15px;
   }
 
@@ -86,13 +88,13 @@ export default {
     padding-right: 20px;
   }
 
-  .list__aside-text {
+  .aside__text {
     color: var(--color-font);
     font-size: 14px;
     font-weight: 500;
   }
 
-  .list__aside-text:last-child {
+  .aside__text:last-child {
     margin-top: 5px;
   }
 
@@ -105,12 +107,12 @@ export default {
     margin-right: 0;
   }
 
-  .list__number-dezena {
+  .number__dozens {
     font-size: 20px;
     font-weight: bold;
   }
 
-  .list__number-vez {
+  .number__times {
     color: var(--color-font);
     font-weight: 600;
     font-size: 14px;
@@ -122,7 +124,7 @@ export default {
       max-width: 100%;
     }
 
-    .statistcs__card-list {
+    .card__list {
       overflow-x: auto;
     }
 
@@ -132,11 +134,11 @@ export default {
   }
 
   @media (min-width: 768px) {
-    .statistcs__card-title {
+    .card__title {
       font-size: 20px;
     }
 
-    .statistcs__card-list {
+    .card__list {
       padding: 15px 20px;
     }
 
@@ -147,15 +149,15 @@ export default {
       padding-right: 25px;
     }
 
-    .list__aside-text:last-child {
+    .aside__text:last-child {
       margin-top: 7px;
     }
 
-    .list__number-dezena {
+    .number__dozens {
       font-size: 22px;
     }
 
-    .list__number-vez {
+    .number__times {
       font-size: 15px;
     }
   }

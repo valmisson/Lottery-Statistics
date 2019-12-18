@@ -1,7 +1,7 @@
 <template>
-  <main class="page__404">
-    <h1 class="page__404-title">404</h1>
-    <h2 class="page__404-description">Página não encontrada</h2>
+  <main class="page">
+    <h1 class="page__title">404</h1>
+    <h2 class="page__description">Página não encontrada</h2>
   </main>
 </template>
 
@@ -12,24 +12,24 @@ export default {
 </script>
 
 <style scoped>
-  .page__404 {
+  .page {
     margin-top: 60px;
     text-align: center;
   }
 
-  .page__404-title {
+  .page__title {
     color: var(--color-primary);
     font-size: 64px;
     margin: 0;
   }
 
-  .page__404-description {
+  .page__description {
     font-size: 24px;
     margin-top: 15px;
   }
 
   @media (min-width: 768px) {
-    .page__404-description {
+    .page__description {
       font-size: 32px;
       margin-top: 20px;
     }
